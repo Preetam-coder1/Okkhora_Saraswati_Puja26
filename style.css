@@ -8,12 +8,15 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh; /* use min-height for better scaling */
   margin: 0;
 }
 
 .container {
   text-align: center;
+  padding: 1rem;
+  width: 100%;
+  max-width: 600px; /* keeps content centered on large screens */
 }
 
 /* Hide the checkbox */
@@ -22,15 +25,16 @@ body {
 }
 
 .btn {
-  padding: 15px 30px;
-  font-size: 18px;
+  padding: 1rem 2rem;
+  font-size: 1rem;
   background-color: #c33f27;
   color: white;
-  border: 2px solid #000000; /* fixed */
+  border: 2px solid #000000;
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
   display: inline-block;
+  width: auto;
 }
 
 .btn:hover {
@@ -39,31 +43,34 @@ body {
 
 .card {
   display: none;
-  margin-top: 20px;
-  padding: 30px;
+  margin-top: 1.5rem;
+  padding: 1.5rem;
   background-image: url("text2.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  width: 100%;
   max-width: 400px;
   animation: fadeIn 1s ease forwards;
 }
 
 .card h2 {
   color: #ff6f61;
-  margin-bottom: 10px;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
 }
 
 .card p {
-  font-size: 16px;
+  font-size: 1rem;
   color: #333;
 }
 
 .card img {
-  margin-top: 15px;
-  max-width: 100%;
+  margin-top: 1rem;
+  width: 100%; /* responsive image */
+  height: auto; /* maintain aspect ratio */
   border-radius: 10px;
   box-shadow: 0 3px 8px rgba(0,0,0,0.2);
 }
@@ -80,30 +87,32 @@ body {
 
 footer {
   text-align: center;
-  padding: 10px;
-  color:aliceblue;
+  padding: 0.5rem;
+  color: aliceblue;
   width: 100%;
   position: fixed;
-  bottom: 0px;
+  bottom: 0;
   left: 0;
+  font-size: 0.9rem;
 }
 
 /* Countdown container */
 #countdown {
   position: fixed;
-  top: 60px;          /* sits above footer */
+  top: 60px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 0px;
+  gap: 0.5rem;
   font-family: 'Poppins', sans-serif;
+  flex-wrap: wrap; /* allows wrapping on small screens */
 }
 
 #countdown span {
-  border: 2px solid #63cfdf00; /* fixed */
+  border: 2px solid transparent;
   border-radius: 8px;
-  padding: 10px 15px;
-  font-size: 20px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
   font-weight: bold;
   color: #000000;
   background: #c33f27;
@@ -124,8 +133,8 @@ footer {
 
 /* Zoomed image */
 #overlay img {
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 90%; /* responsive scaling */
+  max-height: 90%;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(255,255,255,0.5);
   animation: zoomIn 0.3s ease;
@@ -134,7 +143,7 @@ footer {
 /* Animation for zoom-in */
 @keyframes zoomIn {
   from { transform: scale(0.5); opacity: 0; }
-  to { transform: scale(1.3); opacity: 1; }
+  to { transform: scale(1); opacity: 1; }
 }
 
 /* Cursor hint */
@@ -143,5 +152,50 @@ footer {
   transition: transform 0.3s;
 }
 .zoomable:hover {
-  transform: scale(1.2);
+  transform: scale(1.05);
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.8rem 1.5rem;
+  }
+
+  .card {
+    max-width: 90%;
+    padding: 1rem;
+  }
+
+  #countdown span {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 2rem;
+  }
+
+  .btn {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  .card {
+    max-width: 95%;
+  }
+
+  footer {
+    font-size: 0.8rem;
+  }
+
+  #countdown {
+    flex-direction: column;
+    top: auto;
+    bottom: 60px;
+  }
 }
